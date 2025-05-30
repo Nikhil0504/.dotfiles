@@ -1,0 +1,132 @@
+# Compiled source
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+*.pyc
+*.pyo
+
+# Packages
+# it's better to unpack these files and commit the raw source
+# git has its own built in compression methods
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Logs and databases
+*.log
+*.sql
+*.sqlite
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Editor files
+*.swp
+*.swo
+*~
+*.sublime-workspace
+.vscode/
+.idea/
+*.iml
+
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+.hypothesis/
+.coverage
+.coverage.*
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Local configuration
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# ======================
+# Astronomy/Science Data
+# ======================
+
+# FITS files (usually data, not code)
+*.fits
+*.fit
+*.fts
+*.fits.gz
+*.fits.bz2
+
+# HDF5 data files
+*.h5
+*.hdf5
+
+# Large data directories
+data/
+Data/
+observations/
+Observations/
+raw/
+Raw/
+reduced/
+Reduced/
+calibrated/
+Calibrated/
+
+# IRAF files (if still used)
+*.imh
+*.pix
+login.cl
+uparm/
+*.log.*
+
+# DS9 regions and other auxiliary files
+*.reg
+*.xml
+
+# Temporary analysis files
+*.tmp
+*.temp
+*_temp.*
+*_backup.*
+
+# Large output files
+*.pdf.bak
+*.ps
+*.eps.bak
+
+# Pipeline temporary files
+*.pipeline_*
+*.temp_*

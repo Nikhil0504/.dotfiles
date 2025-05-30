@@ -1,0 +1,135 @@
+# ===================
+# Starship Configuration
+# ===================
+# Cross-platform prompt for astronomy workflows
+
+# Overall format
+format = """
+$username\
+$hostname\
+$directory\
+$git_branch\
+$git_status\
+$python\
+$conda\
+$nodejs\
+$rust\
+$golang\
+$package\
+$cmd_duration\
+$line_break\
+$character"""
+
+# Character configuration
+[character]
+success_symbol = "[❯](bold green)"
+error_symbol = "[❯](bold red)"
+
+# Directory configuration - important for deep astronomy paths
+[directory]
+truncation_length = 3
+truncate_to_repo = false
+format = "[$path]($style)[$read_only]($read_only_style) "
+style = "bold cyan"
+read_only = "🔒"
+
+# Git configuration - essential for research code
+[git_branch]
+symbol = "🌱 "
+format = "[$symbol$branch]($style) "
+style = "bold yellow"
+
+[git_status]
+format = '([\[$all_status$ahead_behind\]]($style) )'
+style = "bold red"
+conflicted = "⚡"
+ahead = "⇡${count}"
+behind = "⇣${count}"
+diverged = "⇕⇡${ahead_count}⇣${behind_count}"
+up_to_date = "✓"
+untracked = "?"
+stashed = "$"
+modified = "!"
+staged = "+"
+renamed = "»"
+deleted = "✘"
+
+# Python configuration - crucial for astronomy
+[python]
+symbol = "🐍 "
+format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
+style = "bold yellow"
+pyenv_version_name = true
+pyenv_prefix = "pyenv "
+
+# Conda configuration - very important for your workflow
+[conda]
+symbol = "🅒 "
+format = "[$symbol$environment]($style) "
+style = "bold green"
+ignore_base = false
+
+# Command duration - helpful for long analysis scripts
+[cmd_duration]
+min_time = 2000
+format = "took [$duration]($style) "
+style = "bold yellow"
+
+# Node.js (if you use any JS tools)
+[nodejs]
+symbol = "⬢ "
+format = "[$symbol($version )]($style)"
+style = "bold green"
+
+# Rust (for tools like ripgrep, fd, zoxide)
+[rust]
+symbol = "🦀 "
+format = "[$symbol($version )]($style)"
+style = "bold red"
+
+# Go (if used)
+[golang]
+symbol = "🐹 "
+format = "[$symbol($version )]($style)"
+style = "bold cyan"
+
+# Package version (for projects with package.json, pyproject.toml, etc.)
+[package]
+symbol = "📦 "
+format = "[$symbol$version]($style) "
+style = "bold magenta"
+
+# Username and hostname for remote systems (HPC)
+[username]
+show_always = false
+format = "[$user]($style)@"
+style_user = "bold blue"
+style_root = "bold red"
+
+[hostname]
+ssh_only = true
+format = "[$hostname]($style):"
+style = "bold green"
+disabled = false
+
+# Time (optional - useful for logging)
+[time]
+disabled = true
+format = "[$time]($style) "
+style = "bold white"
+time_format = "%T"
+
+# Custom astronomy modules
+[custom.fits_count]
+command = "find . -maxdepth 1 -name '*.fits' -o -name '*.fit' -o -name '*.fts' 2>/dev/null | wc -l | tr -d ' '"
+when = "test -n \"$(find . -maxdepth 1 -name '*.fits' -o -name '*.fit' -o -name '*.fts' 2>/dev/null)\""
+format = "[📸$output]($style) "
+style = "bold purple"
+description = "Show count of FITS files in current directory"
+
+[custom.jupyter_status]
+command = "pgrep -f jupyter"
+when = "pgrep -f jupyter"
+format = "[🪐]($style) "
+style = "bold orange"
+description = "Show if Jupyter is running"

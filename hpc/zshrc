@@ -1,0 +1,99 @@
+# HPC specific zsh configuration
+
+# Enable module command if available
+if command -v module &> /dev/null; then
+    # Load common modules
+    module load python 2>/dev/null || true
+    module load gcc 2>/dev/null || true
+fi
+
+# Set environment variables for various HPC tools
+export OMP_NUM_THREADS=8  # Set to an appropriate value based on your HPC system
+
+# Add conda to PATH if available
+if [ -d "$HOME/miniconda3/bin" ]; then
+    export PATH="$HOME/miniconda3/bin:$PATH"
+fi
+
+# Add local bin to PATH
+export PATH="$HOME/.local/bin:$PATH"
+
+# Aliases for HPC specific commands
+alias qme='qstat -u $USER'     # Show my jobs
+alias interactive='qsub -I'    # Request interactive job
+
+# Check which job scheduler is available and set aliases accordingly
+if command -v sbatch &> /dev/null; then
+    # SLURM
+    alias sqi='squeue -u $USER'
+    alias sinfo='sinfo -o "%20P %5D %14F %8z %10m %10d %11l %N"'
+    alias sjobs='sacct -X --format=JobID,JobName,Partition,Account,AllocCPUS,State,ExitCode,Start,Elapsed -j'
+elif command -v qsub &> /dev/null; then
+    # PBS/Torque
+    alias qstat='qstat -w'
+    alias showq='showq -u $USER'
+fi
+
+# Function to check disk quota
+check_quota() {
+    if command -v lfs &> /dev/null; then
+        # Lustre filesystem
+        lfs quota -u $USER -h $HOME
+    elif command -v quota &> /dev/null; then
+        # Standard quota command
+        quota -s
+    else
+        echo "No quota command available"
+    fi
+}
+
+# Function to get node information for running job
+job_nodes() {
+    if [ -z "$1" ]; then
+        echo "Usage: job_nodes <job_id>"
+        return 1
+    fi
+    
+    if command -v squeue &> /dev/null; then
+        # SLURM
+        squeue -j $1 -o "%N"
+    elif command -v qstat &> /dev/null; then
+        # PBS/Torque
+        qstat -f $1 | grep exec_host
+    fi
+}
+
+# Function to create and submit job script
+submit_job() {
+    local script_name="${1:-job.sh}"
+    local nodes="${2:-1}"
+    local ppn="${3:-16}"
+    local walltime="${4:-01:00:00}"
+    local queue="${5:-batch}"
+    
+    cat > $script_name << EOL
+#!/bin/bash
+#PBS -N my_job
+#PBS -l nodes=$nodes:ppn=$ppn
+#PBS -l walltime=$walltime
+#PBS -q $queue
+#PBS -j oe
+#PBS -o output.log
+
+# Load necessary modules
+module load python
+
+# Change to submission directory
+cd \$PBS_O_WORKDIR
+
+# Your commands here
+echo "Job started on \$(date)"
+echo "Running on \$(hostname)"
+
+# End of script
+echo "Job finished on \$(date)"
+EOL
+    
+    echo "Job script created: $script_name"
+    echo "Submit with: qsub $script_name"
+}

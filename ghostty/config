@@ -1,0 +1,151 @@
+# ===================
+# Ghostty Configuration
+# ===================
+# Modern terminal configuration for astronomy workflows
+# Docs: https://ghostty.org/docs
+
+# ===================
+# Appearance
+# ===================
+
+# Theme
+theme = dark:GitHub Dark,light:GitHub Light
+
+# Font configuration
+font-family = "SF Mono"
+font-size = 14
+font-thicken = true
+
+# Window appearance
+window-decoration = true
+window-title-font-family = "SF Pro Text"
+window-padding-x = 8
+window-padding-y = 8
+window-vsync = true
+
+# Background
+background-opacity = 0.95
+background-blur-radius = 20
+
+# Cursor
+cursor-style = block
+cursor-style-blink = false
+
+# ===================
+# Colors & Themes
+# ===================
+
+# Custom colors for astronomy workflows
+# These work well with terminal plots and FITS file viewing
+
+# Normal colors
+palette = 0=#1e1e2e
+palette = 1=#f38ba8  # Red - errors
+palette = 2=#a6e3a1  # Green - success
+palette = 3=#f9e2af  # Yellow - warnings
+palette = 4=#89b4fa  # Blue - info
+palette = 5=#cba6f7  # Magenta - important
+palette = 6=#94e2d5  # Cyan - highlights
+palette = 7=#cdd6f4  # White - text
+
+# Bright colors
+palette = 8=#585b70
+palette = 9=#f38ba8
+palette = 10=#a6e3a1
+palette = 11=#f9e2af
+palette = 12=#89b4fa
+palette = 13=#cba6f7
+palette = 14=#94e2d5
+palette = 15=#ffffff
+
+# ===================
+# Behavior
+# ===================
+
+# Shell integration
+shell-integration = zsh
+shell-integration-features = cursor,sudo,title
+
+# Working directory
+working-directory = inherit
+
+# Command line applications
+auto-update = check
+
+# Mouse
+mouse-hide-while-typing = true
+copy-on-select = true
+
+# Scrollback
+scrollback-limit = 10000
+
+# ===================
+# Key Bindings
+# ===================
+
+# macOS-style shortcuts
+keybind = cmd+c=copy_to_clipboard
+keybind = cmd+v=paste_from_clipboard
+keybind = cmd+n=new_window
+keybind = cmd+t=new_tab
+keybind = cmd+w=close_surface
+keybind = cmd+q=quit
+
+# Tab navigation
+keybind = cmd+1=goto_tab:1
+keybind = cmd+2=goto_tab:2
+keybind = cmd+3=goto_tab:3
+keybind = cmd+4=goto_tab:4
+keybind = cmd+5=goto_tab:5
+keybind = cmd+6=goto_tab:6
+keybind = cmd+7=goto_tab:7
+keybind = cmd+8=goto_tab:8
+keybind = cmd+9=goto_tab:9
+
+# Zoom
+keybind = cmd+plus=increase_font_size:1
+keybind = cmd+minus=decrease_font_size:1
+keybind = cmd+zero=reset_font_size
+
+# Split panes (if supported)
+keybind = cmd+d=new_split:right
+keybind = cmd+shift+d=new_split:down
+
+# ===================
+# Advanced
+# ===================
+
+# Performance
+confirm-close-surface = false
+gtk-single-instance = true
+
+# Terminal features
+bell = false
+bold-is-bright = true
+term = xterm-256color
+
+# Title
+title = "Ghostty"
+window-inherit-working-directory = true
+window-inherit-font-size = true
+
+# ===================
+# Development & Science
+# ===================
+
+# Good for viewing logs and data files
+resize-overlay = never
+resize-overlay-position = center
+resize-overlay-duration = 0
+
+# Image support (useful for matplotlib plots in terminal)
+image-storage-limit = 320MB
+
+# ===================
+# Astronomy-specific settings
+# ===================
+
+# Good colors for DS9 and astronomy tools
+# Adjust these if using specific color schemes for FITS viewers
+unfocused-split-opacity = 0.8
+unfocused-split-fill = #1e1e2e

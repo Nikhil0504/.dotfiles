@@ -1,0 +1,93 @@
+# =============
+# ZSH Configuration
+# =============
+# Modern zsh setup without oh-my-zsh, using Starship prompt
+
+# Basic zsh options
+setopt AUTO_CD              # cd by typing directory name if it's not a command
+setopt CORRECT             # auto correct mistakes
+setopt EXTENDED_GLOB       # extended globbing
+setopt NOMATCH             # print error if pattern matches nothing
+setopt NOTIFY              # report the status of backgrounds jobs immediately
+setopt PROMPT_SUBST        # enable parameter expansion in prompts
+
+# History configuration
+HISTFILE=~/.zhistory
+HISTSIZE=50000
+SAVEHIST=50000
+setopt EXTENDED_HISTORY          # record timestamp of command
+setopt HIST_EXPIRE_DUPS_FIRST    # delete duplicates first when HISTFILE size exceeds HISTSIZE
+setopt HIST_IGNORE_DUPS          # ignore duplicated commands history list
+setopt HIST_IGNORE_SPACE         # ignore commands that start with space
+setopt HIST_VERIFY               # show command with history expansion before running
+setopt INC_APPEND_HISTORY        # add commands to HISTFILE in order of execution
+setopt SHARE_HISTORY             # share command history data
+
+# Completion system
+autoload -Uz compinit
+compinit
+
+# Modern completion features
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'  # case insensitive
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"  # colored completions
+zstyle ':completion:*' menu select                        # menu selection
+zstyle ':completion:*' special-dirs true                  # complete . and ..
+zstyle ':completion:*' squeeze-slashes true               # multiple slashes as one
+zstyle ':completion:*:*:cd:*' tag-order local-directories directory-stack path-directories
+
+# Git completion (native zsh)
+autoload -Uz vcs_info
+precmd() { vcs_info }
+zstyle ':vcs_info:git:*' formats '%b'
+
+# Key bindings
+bindkey -e  # emacs key bindings
+bindkey '^[[A' history-search-backward   # up arrow
+bindkey '^[[B' history-search-forward    # down arrow
+bindkey '^[[H' beginning-of-line         # home
+bindkey '^[[F' end-of-line               # end
+bindkey '^[[3~' delete-char              # delete
+
+# Environment
+export LANG=en_US.UTF-8
+export EDITOR='vim'
+
+# Load OS-specific configurations
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    # Linux-specific settings
+    if command -v module &> /dev/null; then
+        # We're on an HPC system
+        [[ -f ~/.dotfiles/hpc/zshrc ]] && source ~/.dotfiles/hpc/zshrc
+    else
+        # Regular Linux
+        [[ -f ~/.dotfiles/linux/zshrc ]] && source ~/.dotfiles/linux/zshrc
+    fi
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+    # MacOS-specific settings
+    [[ -f ~/.dotfiles/macos/zshrc ]] && source ~/.dotfiles/macos/zshrc
+fi
+
+# Load Starship prompt
+if command -v starship &> /dev/null; then
+    eval "$(starship init zsh)"
+else
+    # Fallback simple prompt if starship not available
+    PS1='%F{cyan}%n@%m%f:%F{blue}%~%f%# '
+fi
+
+# Load modular configurations
+[[ -f ~/.dotfiles/zsh/env.zsh ]] && source ~/.dotfiles/zsh/env.zsh
+[[ -f ~/.dotfiles/zsh/aliases.zsh ]] && source ~/.dotfiles/zsh/aliases.zsh
+[[ -f ~/.dotfiles/zsh/functions.zsh ]] && source ~/.dotfiles/zsh/functions.zsh
+
+# Local customizations, not tracked by git
+[[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
+
+# Ensure zoxide's z function is preserved (in case something overrides it)
+if command -v zoxide &> /dev/null; then
+    # Remove any alias that might override zoxide's z function
+    unalias z 2>/dev/null || true
+    # Re-initialize zoxide to ensure z function is available
+    eval "$(zoxide init zsh --no-cmd)"
+    alias z='__zoxide_z'
+fi

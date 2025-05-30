@@ -1,0 +1,107 @@
+# ===================
+# Git Commit Template
+# ===================
+# 
+# Format: <type>(<scope>): <subject>
+#
+# <body>
+#
+# <footer>
+#
+# ===================
+# Type Examples:
+# feat:     New feature or functionality
+# fix:      Bug fix
+# docs:     Documentation changes
+# style:    Formatting, missing semicolons, etc (no code change)
+# refactor: Code change that neither fixes a bug nor adds a feature
+# test:     Adding or modifying tests
+# chore:    Maintenance tasks, dependencies, build changes
+# perf:     Performance improvements
+# data:     Data processing, calibration, or analysis updates
+# science:  Scientific analysis, algorithm improvements
+# paper:    Paper/publication related changes
+# config:   Configuration file changes
+#
+# ===================
+# Scope Examples (Astronomy):
+# pipeline:  Data reduction pipeline
+# photometry: Photometric analysis
+# spectro:   Spectroscopy analysis
+# plotting:  Visualization code
+# io:        Input/output operations
+# utils:     Utility functions
+# models:    Physical/statistical models
+# calib:     Calibration procedures
+# jwst:      JWST-specific code
+# hst:       HST-specific code
+# fits:      FITS file handling
+# coords:    Coordinate transformations
+# stats:     Statistical analysis
+# ml:        Machine learning components
+#
+# ===================
+# Subject Guidelines:
+# - Use imperative mood ("Add" not "Added" or "Adds")
+# - Don't capitalize first letter
+# - No period at the end
+# - Limit to 50 characters
+#
+# ===================
+# Body Guidelines:
+# - Explain what and why, not how
+# - Wrap at 72 characters
+# - Include context for the change
+# - Reference issues/papers if applicable
+#
+# ===================
+# Footer Guidelines:
+# - Reference breaking changes: BREAKING CHANGE: <description>
+# - Reference issues: Closes #123, Fixes #456
+# - Co-authored-by: Name <email@example.com>
+#
+# ===================
+# Examples:
+#
+# feat(photometry): add PSF fitting for crowded fields
+# 
+# Implement iterative PSF subtraction algorithm for
+# dense stellar regions. Uses DAOPHOT-style approach
+# with custom background estimation.
+# 
+# Closes #45
+#
+# ---
+#
+# fix(jwst): correct WCS header parsing for NIRCam
+#
+# The FITS header keywords were incorrectly mapped
+# causing 0.1" systematic offset in coordinates.
+# 
+# Fixes #123
+# References: JWST-STScI-001234
+#
+# ---
+#
+# data(calib): update flat field corrections
+#
+# New flat fields from proposal 2345 show improved
+# correction in detector corners. Applied to all
+# F200W observations.
+#
+# ---
+#
+# science(spectro): improve continuum fitting algorithm
+#
+# Replace linear fitting with spline interpolation
+# for better handling of emission line regions.
+# Reduces RMS by ~15% in continuum-normalized spectra.
+#
+# ---
+#
+# docs(api): add docstrings for coordinate functions
+#
+# Complete API documentation for all coordinate
+# transformation utilities in coords module.
+#
+# ===================
