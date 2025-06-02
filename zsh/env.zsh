@@ -177,7 +177,7 @@ export HOMEBREW_NO_AUTO_UPDATE=1  # Disable automatic updates during install
 # ===================
 
 # Matplotlib backend for remote/headless environments
-export MPLBACKEND="Agg"  # Use when no display is available
+#export MPLBACKEND="Agg"  # Use when no display is available
 
 # FITS file handling
 export FITS_VERIFY_CHECKSUM=true
