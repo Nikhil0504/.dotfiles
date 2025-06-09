@@ -8,9 +8,6 @@
 # Appearance
 # ===================
 
-# Theme
-theme = dark:GitHub Dark,light:GitHub Light
-
 # Font configuration
 font-family = "SF Mono"
 font-size = 14
@@ -25,7 +22,7 @@ window-vsync = true
 
 # Background
 background-opacity = 0.95
-background-blur-radius = 20
+background-blur = 20
 
 # Cursor
 cursor-style = block
@@ -35,28 +32,9 @@ cursor-style-blink = false
 # Colors & Themes
 # ===================
 
-# Custom colors for astronomy workflows
-# These work well with terminal plots and FITS file viewing
-
-# Normal colors
-palette = 0=#1e1e2e
-palette = 1=#f38ba8  # Red - errors
-palette = 2=#a6e3a1  # Green - success
-palette = 3=#f9e2af  # Yellow - warnings
-palette = 4=#89b4fa  # Blue - info
-palette = 5=#cba6f7  # Magenta - important
-palette = 6=#94e2d5  # Cyan - highlights
-palette = 7=#cdd6f4  # White - text
-
-# Bright colors
-palette = 8=#585b70
-palette = 9=#f38ba8
-palette = 10=#a6e3a1
-palette = 11=#f9e2af
-palette = 12=#89b4fa
-palette = 13=#cba6f7
-palette = 14=#94e2d5
-palette = 15=#ffffff
+# Using built-in Catppuccin themes for consistency
+# The themes already include optimized colors for development work
+# and are well-suited for astronomy workflows with good contrast
 
 # ===================
 # Behavior
@@ -120,7 +98,6 @@ confirm-close-surface = false
 gtk-single-instance = true
 
 # Terminal features
-bell = false
 bold-is-bright = true
 term = xterm-256color
 
@@ -136,10 +113,6 @@ window-inherit-font-size = true
 # Good for viewing logs and data files
 resize-overlay = never
 resize-overlay-position = center
-resize-overlay-duration = 0
-
-# Image support (useful for matplotlib plots in terminal)
-image-storage-limit = 320MB
 
 # ===================
 # Astronomy-specific settings
