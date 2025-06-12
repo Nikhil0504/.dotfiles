@@ -199,7 +199,8 @@ alias ipy="ipython"  # start ipython
 alias pip="pip3"  # use pip3 by default
 
 # Common astronomy directories (customize these paths)
-alias ar="cd ~/Documents/Astronomy_Research/"  # code repositories
+alias ar="cd ~/Astronomy_Research/"  # code repositories
+alias galfit="~/Software/galfit"
 # Navigation help
 alias zh="zoxide_help"  # Show zoxide usage and stats
 alias zl="zoxide query -l"  # List all zoxide directories
