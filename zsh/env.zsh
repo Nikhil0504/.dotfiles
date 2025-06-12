@@ -1,4 +1,4 @@
-# =============
+#=============
 # Environment Variables
 # =============
 
@@ -199,6 +199,8 @@ export ASTROPY_CACHE_DIR="$HOME/.astropy/cache"
 # export ASTRO_ANALYSIS="$HOME/Analysis"
 # export ASTRO_PAPERS="$HOME/Papers"
 
+# STPSF Path
+export STPSF_PATH=$HOME/Software/stpsf-data  
 
 # DS9 settings
 export DS9_TITLE="DS9"

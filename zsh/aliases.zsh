@@ -213,7 +213,6 @@ alias apy="python -c 'import astropy; print(astropy.__version__)'"
 alias npy="python -c 'import numpy; print(numpy.__version__)'"
 alias spy="python -c 'import scipy; print(scipy.__version__)'"
 alias mpl="python -c 'import matplotlib; print(matplotlib.__version__)'"
-alias STPSF_PATH=$HOME/Software/stpsf-data
 # DS9 and visualization
 alias d9="ds9 &"  # launch DS9 in background
 
