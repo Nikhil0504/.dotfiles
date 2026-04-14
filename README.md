@@ -1,23 +1,14 @@
 # Dotfiles
 
-This repository contains my personal dotfiles for configuring various tools and environments across different systems.
+This repository contains a minimal, portable set of dotfiles focused on essential shell utilities and navigation.
 
 ## Features
 
-- Cross-platform compatibility (macOS, Linux, HPC)
-- Modular organization of configuration files
+- Minimalist approach - only essential configurations included
+- Cross-platform compatibility (macOS, Linux)
+- Simple, easy-to-understand configuration
+- Focus on productivity without bloat
 - Automatic installation with a single command
-- Platform-specific configurations
-- Extensive Vim, Tmux, Git, and Zsh configurations
-
-## Components
-
-- **Zsh**: Shell configuration with aliases, functions, and environment setup
-- **Vim**: Feature-rich Vim configuration
-- **Git**: Git configuration with useful aliases and settings
-- **Tmux**: Terminal multiplexer configuration
-- **OS-specific settings**: Configurations for macOS and Linux
-- **HPC settings**: Special configurations for High-Performance Computing environments
 
 ## Installation
 
@@ -36,71 +27,39 @@ The installer will automatically detect your OS and set up the appropriate confi
 
 ```
 .dotfiles/
-├── git/              # Git configuration
-├── hpc/              # HPC-specific settings
-├── linux/            # Linux-specific settings
+├── zsh/              # Zsh configuration (essential aliases and functions)
 ├── macos/            # macOS-specific settings
-├── scripts/          # Utility scripts
-├── tmux/             # Tmux configuration
-├── vim/              # Vim configuration
-├── zsh/              # Zsh configuration
 ├── install.sh        # Main installation script
 └── README.md         # This file
 ```
 
-## Customization
-
-### Local Customizations
-
-Each configuration supports local customization through `.local` files that are not tracked by Git:
-
-- `~/.zshrc.local`: Local Zsh settings
-- `~/.vimrc.local`: Local Vim settings
-- `~/.tmux.conf.local`: Local Tmux settings
-- `~/.gitconfig.local`: Local Git settings
-
-### Environment Detection
-
-The dotfiles automatically detect which environment they're running in:
-
-- macOS (laptop)
-- Linux (desktop)
-- HPC (cluster)
-
-## Key Features
+## What's Included
 
 ### Zsh Configuration
 
-- Custom aliases and functions
-- Environment variables
-- Platform-specific settings
+- **Basic Navigation**: `..`, `...`, `....`, `.....`, `~`, `-` (previous directory)
+- **Directory Listing**: `ls`, `ll`, `la` (with macOS color support)
+- **Essential Utilities**: 
+  - `c` - clear screen
+  - `h` - history
+  - `path` - display PATH entries line by line
+- **Config Shortcuts**:
+  - `zrc` - edit zshrc
+  - `dot` - navigate to dotfiles directory
+- **Core Functions**:
+  - `mkcd()` - create directory and enter it
+  - `extract()` - extract various archive types
+  - `jump()` - navigate to directory containing a file
+  - `mkdz()` - create directory and enter it
 
-### Vim Configuration
+## Customization
 
-- Sensible defaults
-- Key mappings
-- Syntax highlighting
-- Auto-indentation
+Since this is a minimal starting point, you can add only what you actually need:
 
-### Git Configuration
-
-- Useful aliases
-- Default settings
-- Global gitignore
-
-### Tmux Configuration
-
-- Custom key bindings
-- Status bar configuration
-- Mouse support
+- Edit `~/.zshrc` for additional aliases and functions
+- Add local configurations as needed
+- Install only the tools you actually use
 
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Acknowledgments
-
-These dotfiles were inspired by and borrow from various sources including:
-- [Mathias Bynens' dotfiles](https://github.com/mathiasbynens/dotfiles)
-- [Thoughtbot's dotfiles](https://github.com/thoughtbot/dotfiles)
-- [The Ultimate Vim Configuration](https://github.com/amix/vimrc)

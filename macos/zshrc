@@ -35,9 +35,3 @@ fi
 # Use macOS specific clipboard commands
 alias pbp='pbpaste'
 alias pbc='pbcopy'
-
-# Quick open applications
-alias chrome="open -a 'Google Chrome'"
-alias safari="open -a Safari"
-alias ff="open -a Firefox"
-alias vscode="open -a 'Visual Studio Code'"

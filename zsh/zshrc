@@ -67,14 +67,6 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
     [[ -f ~/.dotfiles/macos/zshrc ]] && source ~/.dotfiles/macos/zshrc
 fi
 
-# Load Starship prompt
-if command -v starship &> /dev/null; then
-    eval "$(starship init zsh)"
-else
-    # Fallback simple prompt if starship not available
-    PS1='%F{cyan}%n@%m%f:%F{blue}%~%f%# '
-fi
-
 # Load modular configurations
 [[ -f ~/.dotfiles/zsh/env.zsh ]] && source ~/.dotfiles/zsh/env.zsh
 [[ -f ~/.dotfiles/zsh/aliases.zsh ]] && source ~/.dotfiles/zsh/aliases.zsh
@@ -82,12 +74,3 @@ fi
 
 # Local customizations, not tracked by git
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
-
-# Ensure zoxide's z function is preserved (in case something overrides it)
-if command -v zoxide &> /dev/null; then
-    # Remove any alias that might override zoxide's z function
-    unalias z 2>/dev/null || true
-    # Re-initialize zoxide to ensure z function is available
-    eval "$(zoxide init zsh --no-cmd)"
-    alias z='__zoxide_z'
-fi

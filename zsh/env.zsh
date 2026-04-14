@@ -1,88 +1,21 @@
 #=============
-# Environment Variables
+# Environment Variables - Basic
 # =============
 
-# XDG Base Directory specification
-export XDG_CONFIG_HOME="$HOME/.config"
-export XDG_CACHE_HOME="$HOME/.cache"
-export XDG_DATA_HOME="$HOME/.local/share"
+# Editor settings
+export EDITOR="nano"
+export VISUAL="nano"
+export PAGER="less"
 
-# Add local bin to PATH
+# Basic PATH additions
 export PATH="$HOME/.local/bin:$PATH"
 
-# Homebrew paths (macOS)
-if [[ "$OSTYPE" == "darwin"* ]]; then
-    if [[ -d "/opt/homebrew/bin" ]]; then
-        export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
-    elif [[ -d "/usr/local/bin" ]]; then
-        export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
-    fi
-fi
+# Terminal
+export TERM="xterm-256color"
 
-# Go path
-export GOPATH="$HOME/go"
-export PATH="$GOPATH/bin:$PATH"
-
-# Rust path
-[[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
-
-# Zoxide (smart cd replacement)
-if command -v zoxide &> /dev/null; then
-    eval "$(zoxide init zsh)"
-fi
-
-# Starship prompt
-if command -v starship &> /dev/null; then
-    eval "$(starship init zsh)"
-fi
-
-# Node Version Manager (nvm)
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# Anaconda/Conda configuration
-# Try multiple common conda installation paths
-CONDA_PATHS=(
-    "$HOME/anaconda3"
-    "$HOME/miniconda3"
-    "/opt/anaconda3"
-    "/opt/miniconda3"
-    "/opt/homebrew/Caskroom/miniforge/base"
-    "/opt/homebrew/Caskroom/miniconda/base"
-    "/usr/local/Caskroom/miniforge/base"
-    "/usr/local/Caskroom/miniconda/base"
-)
-
-# Find and initialize conda
-for conda_path in "${CONDA_PATHS[@]}"; do
-    if [[ -d "$conda_path" ]]; then
-        # Initialize conda for zsh
-        if [[ -f "$conda_path/etc/profile.d/conda.sh" ]]; then
-            source "$conda_path/etc/profile.d/conda.sh"
-        fi
-        
-        # Add conda to PATH if not already there
-        if [[ ":$PATH:" != *":$conda_path/bin:"* ]]; then
-            export PATH="$conda_path/bin:$PATH"
-        fi
-        
-        # Set conda environment variables
-        export CONDA_PREFIX="$conda_path"
-        break
-    fi
-done
-
-# Conda configuration
-export CONDA_AUTO_ACTIVATE_BASE=false  # Don't auto-activate base environment
-export CONDA_CHANGEPS1=false          # Don't let conda change the prompt
-
-# Python path 
-# Use a more flexible approach for Python site-packages
-if command -v python3 &> /dev/null; then
-    PYTHON_VERSION=$(python3 -c "import sys; print(f'{sys.version_info.major}.{sys.version_info.minor}')")
-    export PYTHONPATH="$PYTHONPATH:$HOME/.local/lib/python${PYTHON_VERSION}/site-packages"
-fi
+# Locale
+export LANG="en_US.UTF-8"
+export LC_ALL="en_US.UTF-8"
 
 # Java/JDK paths
 if [[ "$OSTYPE" == "darwin"* ]]; then
@@ -142,21 +75,11 @@ setopt HIST_VERIFY           # Show command with history expansion before runnin
 setopt SHARE_HISTORY         # Share history between all sessions
 
 # Editor settings
-# Default to vim for terminal editing
-export EDITOR="vim"
-export VISUAL="vim"
+# Default to nano for terminal editing
+export EDITOR="nano"
+export VISUAL="nano"
 export PAGER="less"
 
-# GUI Editor (Zed)
-if command -v zed &> /dev/null; then
-    export GUI_EDITOR="zed"
-    alias edit="zed"
-    alias e="zed"
-elif command -v code &> /dev/null; then
-    export GUI_EDITOR="code"
-    alias edit="code"
-    alias e="code"
-fi
 
 # Security settings
 umask 022  # Default file permissions
@@ -176,9 +99,6 @@ export HOMEBREW_NO_AUTO_UPDATE=1  # Disable automatic updates during install
 # Astronomy Settings
 # ===================
 
-# Matplotlib backend for remote/headless environments
-#export MPLBACKEND="Agg"  # Use when no display is available
-
 # FITS file handling
 export FITS_VERIFY_CHECKSUM=true
 export ASTROPY_USE_SYSTEM_TIMEZONE=1
@@ -191,22 +111,5 @@ export JUPYTER_DATA_DIR="$HOME/.local/share/jupyter"
 export PYTHONUNBUFFERED=1  # Ensure Python output is not buffered
 export ASTROPY_CACHE_DIR="$HOME/.astropy/cache"
 
-# Common astronomy data directories (customize these paths as needed)
-# Uncomment and modify these paths based on your directory structure
-# export ASTRO_DATA="$HOME/Data"
-# export ASTRO_OBSERVATIONS="$HOME/Observations"
-# export ASTRO_REDUCTIONS="$HOME/Reductions" 
-# export ASTRO_ANALYSIS="$HOME/Analysis"
-# export ASTRO_PAPERS="$HOME/Papers"
-
 # STPSF Path
 export STPSF_PATH=$HOME/Software/stpsf-data  
-
-# DS9 settings
-export DS9_TITLE="DS9"
-
-# Increase memory limits for large datasets
-if [[ "$OSTYPE" == "darwin"* ]]; then
-    # macOS specific settings
-    ulimit -n 4096  # Increase file descriptor limit
-fi
