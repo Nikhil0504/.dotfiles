@@ -113,3 +113,17 @@ export ASTROPY_CACHE_DIR="$HOME/.astropy/cache"
 
 # STPSF Path
 export STPSF_PATH=$HOME/Software/stpsf-data  
+
+# PIXEDFIT path
+export PIXEDFIT_HOME="$HOME/Software/piXedfit"
+
+# DS9 settings
+export DS9_TITLE="DS9"
+
+# Increase memory limits for large datasets
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    # macOS specific settings
+    ulimit -n 4096  # Increase file descriptor limit
+fi
+
+export SPS_HOME="$HOME/Astronomy_Research/fsps"

@@ -74,3 +74,11 @@ fi
 
 # Local customizations, not tracked by git
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
+
+export PATH="/opt/homebrew/opt/node@22/bin:$PATH"
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/ng27753/.lmstudio/bin"
+# End of LM Studio CLI section
+
+export PATH="/opt/homebrew/opt/llvm/bin:$PATH"

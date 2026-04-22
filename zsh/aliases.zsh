@@ -23,3 +23,5 @@ alias path="echo $PATH | tr ':' '\\n'"
 # Quickly edit config files
 alias zrc="$EDITOR ~/.zshrc"
 alias dot="cd ~/.dotfiles"
+
+alias cloudy="$HOME/Astronomy_Research/c25.00/source/sys_gcc/cloudy.exe"

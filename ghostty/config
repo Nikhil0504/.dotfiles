@@ -1,0 +1,126 @@
+# ===================
+# Ghostty Configuration
+# ===================
+# Modern terminal configuration for astronomy workflows
+# Docs: https://ghostty.org/docs
+
+# ===================
+# Appearance
+# ===================
+
+# Font configuration
+font-family = "SF Mono"
+font-size = 14
+font-thicken = true
+
+# Window appearance
+window-decoration = true
+window-title-font-family = "SF Pro Text"
+window-padding-x = 8
+window-padding-y = 8
+window-vsync = true
+
+# Background
+background-opacity = 0.95
+background-blur = 20
+
+# Cursor
+cursor-style = block
+cursor-style-blink = false
+
+# ===================
+# Colors & Themes
+# ===================
+
+# Using built-in Catppuccin themes for consistency
+# The themes already include optimized colors for development work
+# and are well-suited for astronomy workflows with good contrast
+theme = ayu
+
+# ===================
+# Behavior
+# ===================
+
+# Shell integration
+shell-integration = zsh
+shell-integration-features = cursor,sudo,title
+
+# Working directory
+working-directory = inherit
+
+# Command line applications
+auto-update = check
+
+# Mouse
+mouse-hide-while-typing = true
+copy-on-select = true
+
+# Scrollback
+scrollback-limit = 10000
+
+# ===================
+# Key Bindings
+# ===================
+
+# macOS-style shortcuts
+keybind = cmd+c=copy_to_clipboard
+keybind = cmd+v=paste_from_clipboard
+keybind = cmd+n=new_window
+keybind = cmd+t=new_tab
+keybind = cmd+w=close_surface
+keybind = cmd+q=quit
+
+# Tab navigation
+keybind = cmd+1=goto_tab:1
+keybind = cmd+2=goto_tab:2
+keybind = cmd+3=goto_tab:3
+keybind = cmd+4=goto_tab:4
+keybind = cmd+5=goto_tab:5
+keybind = cmd+6=goto_tab:6
+keybind = cmd+7=goto_tab:7
+keybind = cmd+8=goto_tab:8
+keybind = cmd+9=goto_tab:9
+
+# Zoom
+keybind = cmd+plus=increase_font_size:1
+keybind = cmd+minus=decrease_font_size:1
+keybind = cmd+zero=reset_font_size
+
+# Split panes (if supported)
+keybind = cmd+d=new_split:right
+keybind = cmd+shift+d=new_split:down
+
+# ===================
+# Advanced
+# ===================
+
+# Performance
+confirm-close-surface = false
+gtk-single-instance = true
+
+# Terminal features
+bold-is-bright = true
+term = xterm-256color
+
+# Title
+title = "Ghostty"
+window-inherit-working-directory = true
+window-inherit-font-size = true
+
+# ===================
+# Development & Science
+# ===================
+
+# Good for viewing logs and data files
+resize-overlay = never
+resize-overlay-position = center
+
+# ===================
+# Astronomy-specific settings
+# ===================
+
+# Good colors for DS9 and astronomy tools
+# Adjust these if using specific color schemes for FITS viewers
+unfocused-split-opacity = 0.8
+unfocused-split-fill = #1e1e2e
+keybind = shift+enter=text:\x1b\r
